@@ -7,6 +7,8 @@ import com.sedmelluq.discord.lavaplayer.track.playback.MutableAudioFrame;
 import de.maxhenkel.voicechat.api.Group;
 import de.maxhenkel.voicechat.api.VoicechatConnection;
 import de.maxhenkel.voicechat.api.audiochannel.StaticAudioChannel;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
@@ -20,6 +22,7 @@ import java.util.concurrent.*;
 import java.util.logging.Level;
 
 import static org.karona.simpleVoiceChatMusic.util.Constants.BASS_BOOST;
+import static org.karona.simpleVoiceChatMusic.util.MessageUtils.formatColor;
 
 public class GroupManager {
     private final Group group;
@@ -203,13 +206,14 @@ public class GroupManager {
             ).toArray(Player[]::new);
 
             for (Player player : players) {
+                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(text));
                 player.sendMessage(text);  // Send the plain text message
             }
         });
     }
 
     public void cleanup() {
-        this.broadcast("No more songs to play.");
+        this.broadcast(formatColor("#FC0000") + "No more songs to play.");
         if (this.audioFrameSendingTask != null) this.audioFrameSendingTask.cancel(true);
         this.lavaplayer.destroy();
         MusicManager.getInstance().deleteGroup(this.group);

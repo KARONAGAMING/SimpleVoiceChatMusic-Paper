@@ -10,6 +10,8 @@ import org.karona.simpleVoiceChatMusic.util.ModUtils;
 
 import java.util.logging.Level;
 
+import static org.karona.simpleVoiceChatMusic.util.MessageUtils.formatColor;
+
 public class TrackScheduler extends AudioEventAdapter {
     private final GroupManager group;
 
@@ -20,7 +22,7 @@ public class TrackScheduler extends AudioEventAdapter {
 
     @Override
     public void onTrackStart(AudioPlayer player, AudioTrack track) {
-        this.group.broadcast("Now playing: " + ModUtils.trackInfo(track.getInfo()));
+        this.group.broadcast(formatColor("#A8A8A8") + "Now playing: " + formatColor("#00FC00") + ModUtils.trackInfo(track.getInfo()));
     }
 
     @Override
@@ -35,10 +37,10 @@ public class TrackScheduler extends AudioEventAdapter {
     public void onTrackException(AudioPlayer player, AudioTrack track, FriendlyException exception) {
         if (exception.severity == FriendlyException.Severity.COMMON) {
             SimpleVoiceChatMusic.LOGGER.log(Level.SEVERE, "Failed to play "+track.getInfo().title+" due to error: {}", exception.getMessage());
-            this.group.broadcast("Failed to play song: " + exception.getMessage());
+            this.group.broadcast(formatColor("#FC0000") + "Failed to play song: " + exception.getMessage());
         } else {
             SimpleVoiceChatMusic.LOGGER.log(Level.SEVERE, "Failed to play "+track.getInfo().title+" due to error: {}", exception.getMessage());
-            this.group.broadcast("Failed to play song due to an internal error.");
+            this.group.broadcast(formatColor("#FC0000") + "Failed to play song due to an internal error.");
         }
 
         this.group.nextTrack();
@@ -46,7 +48,7 @@ public class TrackScheduler extends AudioEventAdapter {
 
     @Override
     public void onTrackStuck(AudioPlayer player, AudioTrack track, long thresholdMs) {
-        this.group.broadcast("Track stuck -- skipping!");
+        this.group.broadcast(formatColor("#FC0000") + "Track stuck -- skipping!");
         this.group.nextTrack();
     }
 }

@@ -10,6 +10,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+import static org.karona.simpleVoiceChatMusic.util.MessageUtils.formatColor;
+
 public class ModUtils {
 
     public static String hyperlink(String string, String url) {
@@ -67,26 +69,26 @@ public class ModUtils {
     public static CheckPlayerGroup checkPlayerGroup(Player source) {
 
         if (VoiceChatPlugin.voicechatServerApi == null) {
-            source.sendMessage("VoiceChat API connection has not been established yet! Please try again later.");
+            source.sendMessage(formatColor("#FC0000") + "VoiceChat API connection has not been established yet! Please try again later.");
             return null;
         }
 
         if (source == null) {
-            source.sendMessage("This command is player only!");
+            source.sendMessage(formatColor("#FC0000") + "This command is player only!");
             return null;
         }
 
         VoicechatConnection connection = VoiceChatPlugin.voicechatServerApi.getConnectionOf(source.getUniqueId());
 
         if (connection == null) {
-            source.sendMessage("You are not connected to voice chat!");
+            source.sendMessage(formatColor("#FC0000") + "You are not connected to voice chat!");
             return null;
         }
 
         Group group = connection.getGroup();
 
         if (group == null) {
-            source.sendMessage("You're not in a group! Just use spotify smh..");
+            source.sendMessage(formatColor("#FC0000") + "You're not in a group! Just use spotify smh..");
             return null;
         }
 

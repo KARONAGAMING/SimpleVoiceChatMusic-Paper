@@ -7,6 +7,8 @@ import org.karona.simpleVoiceChatMusic.audio.GroupManager;
 import org.karona.simpleVoiceChatMusic.audio.MusicManager;
 import org.karona.simpleVoiceChatMusic.util.ModUtils;
 import java.util.concurrent.BlockingQueue;
+
+import static org.karona.simpleVoiceChatMusic.util.MessageUtils.formatColor;
 import static org.karona.simpleVoiceChatMusic.util.ModUtils.checkPlayerGroup;
 
 public class QueueCommand implements Command {
@@ -22,17 +24,17 @@ public class QueueCommand implements Command {
             BlockingQueue<AudioTrack> tracks = gm.getQueue();
 
             if (currentTrack != null) {
-                text.append("Current: ").append(ModUtils.trackInfo(currentTrack.getInfo())).append("\n");
+                text.append(formatColor("#A8A8A8") + "Current: ").append(formatColor("#00FC00") + ModUtils.trackInfo(currentTrack.getInfo())).append("\n");
             }
 
             AudioTrack[] tracksArr = tracks.toArray(AudioTrack[]::new);
             for (int i = 0; i < tracksArr.length; i++) {
                 AudioTrack track = tracksArr[i];
-                text.append(i + ". ").append(ModUtils.trackInfo(track.getInfo())).append("\n");
+                text.append(formatColor("#37BFF8") + (i + 1) + formatColor("#A8A8A8") + ". " + formatColor("#37BFF8")).append(ModUtils.trackInfo(track.getInfo())).append("\n");
             }
 
             if (text.toString().isBlank()) {
-                text.append("No songs in the queue.");
+                text.append(formatColor("#FC0000") + "No songs in the queue.");
             }
 
             result.source().sendMessage(text.toString());

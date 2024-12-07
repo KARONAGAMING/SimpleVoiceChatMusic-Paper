@@ -8,6 +8,7 @@ import org.karona.simpleVoiceChatMusic.audio.GroupManager;
 import org.karona.simpleVoiceChatMusic.audio.MusicManager;
 import org.karona.simpleVoiceChatMusic.util.ModUtils;
 
+import static org.karona.simpleVoiceChatMusic.util.MessageUtils.formatColor;
 import static org.karona.simpleVoiceChatMusic.util.ModUtils.checkPlayerGroup;
 
 public class SkipCommand implements Command {
@@ -17,7 +18,7 @@ public class SkipCommand implements Command {
 
         Bukkit.getScheduler().runTask(SimpleVoiceChatMusic.get(), () -> {
             GroupManager gm = MusicManager.getInstance().getGroup(result.group(), result.source().getServer());
-            gm.broadcast("Song skipped by " + result.source().getName());
+            gm.broadcast(formatColor("#A8A8A8") + "Song skipped by: " + result.source().getName());
             gm.nextTrack();
         });
 

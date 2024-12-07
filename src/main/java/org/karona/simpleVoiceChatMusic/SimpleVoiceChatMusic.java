@@ -10,6 +10,8 @@ import org.karona.simpleVoiceChatMusic.commands.*;
 
 import java.util.logging.Logger;
 
+import static org.karona.simpleVoiceChatMusic.util.MessageUtils.formatColor;
+
 public final class SimpleVoiceChatMusic extends JavaPlugin {
     public static Logger LOGGER;
 
@@ -63,22 +65,22 @@ public final class SimpleVoiceChatMusic extends JavaPlugin {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(label.equalsIgnoreCase("music_register_service")) {
             if(vcRegistered) {
-                sender.sendMessage("VoiceChat service already registered!");
+                sender.sendMessage(formatColor("#FC0000") + "VoiceChat service already registered!");
             }else {
                 BukkitVoicechatService service = getServer().getServicesManager().load(BukkitVoicechatService.class);
                 if (service != null) {
                     LOGGER.info("VC Service was not null!");
                     service.registerPlugin(new VoiceChatPlugin());
-                    sender.sendMessage("VoiceChat service register attempted.");
+                    sender.sendMessage(formatColor("#FC0000") + "VoiceChat service register attempted.");
                 }else {
-                    sender.sendMessage("VoiceChat service was null!");
+                    sender.sendMessage(formatColor("#FC0000") + "VoiceChat service was null!");
                 }
             }
             return true;
         }
         if(label.equalsIgnoreCase("music")) {
             if(args.length == 0) {
-                sender.sendMessage("/music <play/stop/pause/bassboost/kill/playing/queue/resume/search/skip/volume>");
+                sender.sendMessage(formatColor("#FC0000") + "/music <play/stop/pause/bassboost/kill/playing/queue/resume/search/skip/volume>");
                 return true;
             }else {
                 try {
@@ -108,11 +110,11 @@ public final class SimpleVoiceChatMusic extends JavaPlugin {
                         case "volume":
                             return volume.execute((Player) sender, argsWithoutCommand) >= -1;
                         default:
-                            sender.sendMessage("/music <play/stop/pause/bassboost/kill/playing/queue/resume/search/skip/volume>");
+                            sender.sendMessage(formatColor("#FC0000") + "/music <play/stop/pause/bassboost/kill/playing/queue/resume/search/skip/volume>");
                             return true;
                     }
                 }catch(Exception e) {
-                    sender.sendMessage("An error occurred while executing the command: " + e.getMessage() + " / " + e);
+                    sender.sendMessage(formatColor("#FC0000") + "An error occurred while executing the command: " + e.getMessage() + " / " + e);
                     e.printStackTrace();
                     return true;
                 }

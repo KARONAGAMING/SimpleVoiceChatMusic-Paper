@@ -8,6 +8,7 @@ import org.karona.simpleVoiceChatMusic.audio.GroupManager;
 import org.karona.simpleVoiceChatMusic.audio.MusicManager;
 import org.karona.simpleVoiceChatMusic.util.ModUtils;
 
+import static org.karona.simpleVoiceChatMusic.util.MessageUtils.formatColor;
 import static org.karona.simpleVoiceChatMusic.util.ModUtils.checkPlayerGroup;
 
 
@@ -18,7 +19,7 @@ public class PauseCommand implements Command {
 
         Bukkit.getScheduler().runTask(SimpleVoiceChatMusic.get(), () -> {
             GroupManager gm = MusicManager.getInstance().getGroup(result.group(), result.source().getServer());
-            gm.broadcast("Playback paused by " + result.source().getName());
+            gm.broadcast(formatColor("#A8A8A8") + "Playback paused by: " + result.source().getName());
             gm.getPlayer().setPaused(true);
         });
 
