@@ -31,7 +31,7 @@ public class VolumeCommand implements Command {
             return 1;
         }
 
-        Bukkit.getScheduler().runTask(SimpleVoiceChatMusic.get(), () -> {
+        SimpleVoiceChatMusic.getScheduler().runTask(SimpleVoiceChatMusic.get(), () -> {
             GroupManager gm = MusicManager.getInstance().getGroup(result.group(), result.source().getServer());
             gm.broadcast(formatColor("#A8A8A8") + "Volume set to " + formatColor("#37BFF8") + volume + "%" + formatColor("#A8A8A8") + " by :" + result.source().getName());
             gm.setVolume(volume);

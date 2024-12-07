@@ -27,7 +27,7 @@ public class PlayCommand implements Command {
 
         final String query = ModUtils.parseTrackId(String.join(" ", args));
 
-        Bukkit.getScheduler().runTask(SimpleVoiceChatMusic.get(), () -> {
+        SimpleVoiceChatMusic.getScheduler().runTask(SimpleVoiceChatMusic.get(), () -> {
             GroupManager gm = MusicManager.getInstance().getGroup(result.group(), result.source().getServer());
 
             result.source().sendMessage(formatColor("#A8A8A8") + "Loading songs...");

@@ -33,6 +33,19 @@
             </goals>
           </execution>
         </executions>
+        <configuration>
+          <artifactSet>
+            <includes>
+              <include>com.github.Anon8281:UniversalScheduler</include>
+            </includes>
+          </artifactSet>
+          <relocations>
+            <relocation>
+              <pattern>com.github.Anon8281.universalScheduler</pattern>
+              <shadedPattern>org.karona.simpleVoiceChatMusic.universalScheduler</shadedPattern>
+            </relocation>
+          </relocations>
+        </configuration>
       </plugin>
     </plugins>
   </build>
@@ -70,6 +83,30 @@
       <artifactId>voicechat-api</artifactId>
       <version>2.5.0</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.arbjerg</groupId>
+      <artifactId>lavaplayer</artifactId>
+      <version>2.2.2</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.lavalink.youtube</groupId>
+      <artifactId>v2</artifactId>
+      <version>1.8.3</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jsoup</groupId>
+      <artifactId>jsoup</artifactId>
+      <version>1.16.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.iharder</groupId>
+      <artifactId>base64</artifactId>
+      <version>2.3.9</version>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
   <properties>

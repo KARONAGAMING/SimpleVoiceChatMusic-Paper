@@ -28,7 +28,7 @@ public class KillCommand implements Command {
             return 0;
         }
 
-        Bukkit.getScheduler().runTask(SimpleVoiceChatMusic.get(), () -> {
+        SimpleVoiceChatMusic.getScheduler().runTask(SimpleVoiceChatMusic.get(), () -> {
             GroupManager gm = MusicManager.getInstance().getGroup(result.group(), result.source().getServer());
             gm.broadcast(formatColor("#FC0000") + "Playback forcibly killed by " + result.source().getName() + ".");
             gm.cleanup();

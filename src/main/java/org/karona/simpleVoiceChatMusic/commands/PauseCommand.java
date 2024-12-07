@@ -17,7 +17,7 @@ public class PauseCommand implements Command {
         ModUtils.CheckPlayerGroup result = checkPlayerGroup(context);
         if (result == null) return 1;
 
-        Bukkit.getScheduler().runTask(SimpleVoiceChatMusic.get(), () -> {
+        SimpleVoiceChatMusic.getScheduler().runTask(SimpleVoiceChatMusic.get(), () -> {
             GroupManager gm = MusicManager.getInstance().getGroup(result.group(), result.source().getServer());
             gm.broadcast(formatColor("#A8A8A8") + "Playback paused by: " + result.source().getName());
             gm.getPlayer().setPaused(true);

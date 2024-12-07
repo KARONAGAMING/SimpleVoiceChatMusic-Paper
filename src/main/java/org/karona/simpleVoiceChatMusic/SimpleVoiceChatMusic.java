@@ -1,5 +1,7 @@
 package org.karona.simpleVoiceChatMusic;
 
+import com.github.Anon8281.universalScheduler.UniversalScheduler;
+import com.github.Anon8281.universalScheduler.scheduling.schedulers.TaskScheduler;
 import de.maxhenkel.voicechat.api.BukkitVoicechatService;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -13,6 +15,8 @@ import java.util.logging.Logger;
 import static org.karona.simpleVoiceChatMusic.util.MessageUtils.formatColor;
 
 public final class SimpleVoiceChatMusic extends JavaPlugin {
+    private static TaskScheduler scheduler;
+
     public static Logger LOGGER;
 
     public static SimpleVoiceChatMusic get() {
@@ -25,6 +29,8 @@ public final class SimpleVoiceChatMusic extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        scheduler = UniversalScheduler.getScheduler(this);
+
         SimpleVoiceChatMusic.LOGGER = getLogger();
 
         BukkitVoicechatService service = getServer().getServicesManager().load(BukkitVoicechatService.class);
@@ -56,6 +62,10 @@ public final class SimpleVoiceChatMusic extends JavaPlugin {
             getServer().getServicesManager().unregister(plugin);
             LOGGER.info("Unregistered VoiceChat service.");
         }
+    }
+
+    public static TaskScheduler getScheduler() {
+        return scheduler;
     }
 
     org.karona.simpleVoiceChatMusic.commands.Command

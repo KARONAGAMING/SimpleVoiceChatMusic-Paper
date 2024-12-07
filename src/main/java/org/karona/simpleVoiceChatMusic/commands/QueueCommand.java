@@ -16,7 +16,7 @@ public class QueueCommand implements Command {
         ModUtils.CheckPlayerGroup result = checkPlayerGroup(context);
         if (result == null) return 1;
 
-        Bukkit.getScheduler().runTask(SimpleVoiceChatMusic.get(), () -> {
+        SimpleVoiceChatMusic.getScheduler().runTask(SimpleVoiceChatMusic.get(), () -> {
             GroupManager gm = MusicManager.getInstance().getGroup(result.group(), result.source().getServer());
 
             StringBuilder text = new StringBuilder();

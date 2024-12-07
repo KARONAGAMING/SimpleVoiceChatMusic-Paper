@@ -27,7 +27,7 @@ public class SearchCommand implements Command {
 
         SimpleVoiceChatMusic.LOGGER.log(Level.INFO, "Searching for " + query);
 
-        Bukkit.getScheduler().runTask(SimpleVoiceChatMusic.get(), () -> {
+        SimpleVoiceChatMusic.getScheduler().runTask(SimpleVoiceChatMusic.get(), () -> {
             GroupManager gm = MusicManager.getInstance().getGroup(result.group(), result.source().getServer());
             result.source().sendMessage(formatColor("#A8A8A8") + "Loading songs...");
             result.source().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(formatColor("#A8A8A8") + "Loading songs..."));

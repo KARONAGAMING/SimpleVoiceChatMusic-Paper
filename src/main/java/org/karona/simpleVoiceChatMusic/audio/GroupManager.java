@@ -200,7 +200,7 @@ public class GroupManager {
 
     public void broadcast(String text) {
         // execute on the main thread
-        Bukkit.getScheduler().runTask(SimpleVoiceChatMusic.get(), () -> {
+        SimpleVoiceChatMusic.getScheduler().runTask(SimpleVoiceChatMusic.get(), () -> {
             Player[] players = server.getOnlinePlayers().stream().filter(
                     player -> this.connections.containsKey(player.getUniqueId())
             ).toArray(Player[]::new);

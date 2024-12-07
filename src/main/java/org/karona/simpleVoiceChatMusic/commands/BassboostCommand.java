@@ -3,7 +3,6 @@ package org.karona.simpleVoiceChatMusic.commands;
 
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.karona.simpleVoiceChatMusic.SimpleVoiceChatMusic;
 import org.karona.simpleVoiceChatMusic.audio.GroupManager;
@@ -30,7 +29,7 @@ public class BassboostCommand implements Command {
             return 1;
         }
 
-        Bukkit.getScheduler().runTask(SimpleVoiceChatMusic.get(), () -> {
+        SimpleVoiceChatMusic.getScheduler().runTask(SimpleVoiceChatMusic.get(), () -> {
             GroupManager gm = MusicManager.getInstance().getGroup(result.group(), result.source().getServer());
             gm.broadcast(formatColor("#A8A8A8") + "Bassboost set to " + formatColor("#37BFF8") + bass + "%" + formatColor("#A8A8A8") +" by: " + player.getName());
             gm.setBassBoost(bass);
